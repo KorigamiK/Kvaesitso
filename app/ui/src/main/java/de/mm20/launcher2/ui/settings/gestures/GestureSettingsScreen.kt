@@ -52,6 +52,7 @@ fun GestureSettingsScreen() {
         add(stringResource(R.string.gesture_action_quick_settings) to GestureAction.QuickSettings)
         if (isAtLeastApiLevel(28)) add(stringResource(R.string.gesture_action_lock_screen) to GestureAction.ScreenLock)
         add(stringResource(R.string.gesture_action_recents) to GestureAction.Recents)
+        add(stringResource(R.string.gesture_action_settings) to GestureAction.Settings)
         add(stringResource(R.string.gesture_action_power_menu) to GestureAction.PowerMenu)
         add(stringResource(R.string.gesture_action_open_search) to GestureAction.Search)
         add(stringResource(R.string.gesture_action_launch_app) to GestureAction.Launch(null))

@@ -2,6 +2,7 @@ package de.mm20.launcher2.ui.launcher
 
 import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -22,6 +23,7 @@ import de.mm20.launcher2.preferences.ui.GestureSettings
 import de.mm20.launcher2.preferences.ui.UiSettings
 import de.mm20.launcher2.search.SavableSearchable
 import de.mm20.launcher2.ui.gestures.Gesture
+import de.mm20.launcher2.ui.settings.SettingsActivity
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
@@ -215,6 +217,15 @@ class LauncherScaffoldVM : ViewModel(), KoinComponent {
         return when (action) {
             is GestureAction.Search -> {
                 openSearch()
+                true
+            }
+
+            is GestureAction.Settings -> {
+                context.startActivity(
+                    Intent(context, SettingsActivity::class.java).apply {
+                        putExtra(SettingsActivity.EXTRA_ROUTE, "settings/search/searchactions")
+                    }
+                )
                 true
             }
 

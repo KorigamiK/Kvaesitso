@@ -371,6 +371,10 @@ sealed interface GestureAction {
     data object Recents : GestureAction
 
     @Serializable
+    @SerialName("settings")
+    data object Settings : GestureAction
+
+    @Serializable
     @SerialName("launch_searchable")
     data class Launch(val key: String?) : GestureAction
 }
