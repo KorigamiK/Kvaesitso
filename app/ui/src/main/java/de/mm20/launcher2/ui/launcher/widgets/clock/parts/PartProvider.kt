@@ -11,5 +11,5 @@ interface PartProvider {
     fun setTime(time: Long) {}
 
     @Composable
-    fun Component(compactLayout: Boolean)
+    fun Component(compactLayout: Boolean, useThemeColor: Boolean)
 }

@@ -70,7 +70,7 @@ class AlarmPartProvider : PartProvider {
     }
 
     @Composable
-    override fun Component(compactLayout: Boolean) {
+    override fun Component(compactLayout: Boolean, useThemeColor: Boolean) {
         val context = LocalContext.current
 
         val alarmTime by nextAlarmTime

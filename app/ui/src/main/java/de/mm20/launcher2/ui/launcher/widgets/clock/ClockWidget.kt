@@ -93,6 +93,7 @@ fun ClockWidget(
     val viewModel: ClockWidgetVM = viewModel()
     val context = LocalContext.current
     val compact by viewModel.compactLayout.collectAsState()
+    val useThemeColor by viewModel.useThemeColor.collectAsState()
     val clockStyle by viewModel.clockStyle.collectAsState()
     val color by viewModel.color.collectAsState()
     val alignment by viewModel.alignment.collectAsState()
@@ -163,7 +164,8 @@ fun ClockWidget(
                 Box(
                     modifier = Modifier
                         .then(if (fillScreenHeight) Modifier.weight(1f) else Modifier)
-                        .fillMaxWidth().padding(horizontal = if (compact == true) 0.dp else 24.dp),
+                        .fillMaxWidth()
+                        .padding(horizontal = if (compact == true) 0.dp else 24.dp),
                     contentAlignment = when (alignment) {
                         ClockWidgetAlignment.Center -> Alignment.Center
                         ClockWidgetAlignment.Top -> Alignment.TopCenter
@@ -193,6 +195,7 @@ fun ClockWidget(
                                     DynamicZone(
                                         modifier = Modifier.padding(bottom = 8.dp),
                                         compact = false,
+                                        useThemeColor = useThemeColor ?: false,
                                         provider = partProvider,
                                     )
                                 }
@@ -211,6 +214,7 @@ fun ClockWidget(
                                         modifier = Modifier.weight(1f),
                                         compact = true,
                                         provider = partProvider,
+                                        useThemeColor = useThemeColor ?: false
                                     )
                                 }
                                 if (clockStyle !is ClockWidgetStyle.Empty) {
@@ -246,7 +250,7 @@ fun ClockWidget(
                             .fillMaxWidth()
                             .padding(bottom = 16.dp)
                     ) {
-                        dockProvider?.Component(false)
+                        dockProvider?.Component(false, useThemeColor ?: false)
                     }
                 }
             }
@@ -328,12 +332,13 @@ fun Clock(
 fun DynamicZone(
     modifier: Modifier = Modifier,
     compact: Boolean,
+    useThemeColor: Boolean,
     provider: PartProvider?,
 ) {
     Column(
         modifier = modifier
     ) {
-        provider?.Component(compact)
+        provider?.Component(compact, useThemeColor)
     }
 }
 

@@ -50,7 +50,7 @@ class MusicPartProvider : PartProvider, KoinComponent {
     }
 
     @Composable
-    override fun Component(compactLayout: Boolean) {
+    override fun Component(compactLayout: Boolean, useThemeColor: Boolean) {
         val context = LocalContext.current
 
         val title by musicService.title.collectAsState(null)

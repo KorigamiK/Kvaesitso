@@ -65,7 +65,7 @@ class BatteryPartProvider : PartProvider {
     }
 
     @Composable
-    override fun Component(compactLayout: Boolean) {
+    override fun Component(compactLayout: Boolean, useThemeColor: Boolean) {
 
         val batteryInfo by this.batteryInfo.collectAsState(null)
 
